@@ -123,9 +123,14 @@ user_inputs = [
 
 test_data = pd.DataFrame(data=[user_inputs], columns=col_heads)
 
+st.header("Model prediction")
+
 if st.button("Make prediction"):
     predictor.predict(test_data)
-    prediction = predictor.predictions
-    st.header(str(prediction))
+    prediction = predictor.predictions[0]
+    if prediction == 1:
+        st.subheader("The model predicts you have heart disease.")
+    else:
+        st.subheader("The model predicts you do not have heart disease.")
 else:
-    st.header("Awaiting data")
+    st.subheader("Awaiting data")
